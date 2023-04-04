@@ -20,10 +20,10 @@ int main()
         // txn.commit();
 
         // create a table
-        txn.exec("CREATE TABLE records( id SERIAL PRIMARY KEY, artist VARCHAR(255) UNIQUE NOT NULL, album VARCHAR(255) NOT NULL, genre VARCHAR(255) NOT NULL, year INTEGER NOT NULL);");
+        txn.exec("CREATE TABLE records( id SERIAL PRIMARY KEY, artist VARCHAR(255) UNIQUE NOT NULL, album VARCHAR(255) NOT NULL, genre VARCHAR(255) NOT NULL, year INTEGER NOT NULL, price INTEGER NOT NULL);");
 
         // insert into table
-        txn.exec("INSERT INTO records (artist, album, genre, year) VALUES ('DEVO', 'Duty Now For The Future', 'Punk', 1979)");
+        txn.exec("INSERT INTO records (artist, album, genre, year, price) VALUES ('DEVO', 'Duty Now For The Future', 'Punk', 1979, 15);");
 
         // Commit the transaction
         // txn.commit();
@@ -43,8 +43,14 @@ int main()
         return 1;
     }
 
+    Record r;
+    r.newRecord();
     // Record record1 = Record("Devo", "Duty Now For The Future", "Rock", 1978);
     // record1.printDetails();
     std::cout << "Success" << std::endl;
     return 0;
 }
+
+// disable use of c++17 when compiled by including '-std=c++17'
+// to compile project: g++ main.cpp classes.cpp -lpqxx -std=c++17
+// to run project: ./a.out
